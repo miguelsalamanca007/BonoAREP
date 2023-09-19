@@ -19,11 +19,11 @@ public class SparkWebServer {
         get("ispalindrome", (req,res) -> {
             String request = req.queryParams("value");
             boolean isPalindrome = true;
-            String result = "Is Palindrome";
+            String result = "es palindromo";
             for (int i=0; i < request.length(); i++) {
                 if(! (request.charAt(i) == request.charAt(request.length()-1-i) )) {
-                    isPalindrome=false;
-                    result = "Is not Palindrome";
+                    isPalindrome = false;
+                    result = "no es palindromo";
                 }
             }
             return result;

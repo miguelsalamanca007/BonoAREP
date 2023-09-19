@@ -2,69 +2,117 @@ package org.example;
 
 public class WebPage {
         public String getPage(){
-            String html =
-                    "<!DOCTYPE html>\n" +
-                            "<html>\n" +
-                            "<head>\n" +
-                            "    <title>Bono</title>\n" +
-                            "</head>\n" +
-                            "<body>\n" +
-                            "    <h1>Formulario con Fetch GET</h1>\n" +
-                            "    <form id=\"miFormulario\">\n" +
-                            "        <label for=\"campo1\">Campo 1:</label>\n" +
-                            "        <input type=\"text\" id=\"campo1\" name=\"campo1\"><br>\n" +
-                            "\n" +
-                            "        <label for=\"campo2\">Campo 2:</label>\n" +
-                            "        <input type=\"text\" id=\"campo2\" name=\"campo2\"><br>\n" +
-                            "\n" +
-                            "        <label for=\"campo3\">Campo 3:</label>\n" +
-                            "        <input type=\"text\" id=\"campo3\" name=\"campo3\"><br>\n" +
-                            "\n" +
-                            "        <label for=\"campo4\">Campo 4:</label>\n" +
-                            "        <input type=\"text\" id=\"campo4\" name=\"campo4\"><br>\n" +
-                            "\n" +
-                            "        <input type=\"submit\" value=\"Enviar\">\n" +
-                            "    </form>\n" +
-                            "\n" +
-                            "    <div id=\"resultado\"></div>\n" +
-                            "\n" +
-                            "    <script>\n" +
-                            "        document.getElementById(\"miFormulario\").addEventListener(\"submit\", function (event) {\n" +
-                            "            event.preventDefault();\n" +
-                            "            var campo1 = document.getElementById(\"campo1\").value;\n" +
-                            "            var campo2 = document.getElementById(\"campo2\").value;\n" +
-                            "            var campo3 = document.getElementById(\"campo3\").value;\n" +
-                            "            var campo4 = document.getElementById(\"campo4\").split(\",\");\n" +
-                            "    var campo5 = document.getElementById(\"campo4\").split(\",\");\n" +
-                            "var URL =" + "http://localhost:36000/" + "\n"+
-                            "                    fetch(URL\" + \"sin/\" + \"campo1)\n" +
-                            "                .then(response => response.text())\n" +
-                            "                .then(data => {\n" +
-                            "                    document.getElementById(\"resultado\").innerHTML = \"Resultado Campo 1: \" + data;\n" +
-                            "                });\n" +
-                            "\n" +
-                            "            fetch(URL\" + \"cos/\" + \"campo2)\n" +
-                            "                .then(response => response.text())\n" +
-                            "                .then(data => {\n" +
-                            "                    document.getElementById(\"resultado\").innerHTML += \"<br>Resultado Campo 2: \" + data;\n" +
-                            "                });\n" +
-                            "\n" +
-                            "            fetch(URL\" + \"palindromo/\" + \"campo3)\n" +
-                            "                .then(response => response.text())\n" +
-                            "                .then(data => {\n" +
-                            "                    document.getElementById(\"resultado\").innerHTML += \"<br>Resultado Campo 3: \" + data;\n" +
-                            "                });\n" +
-                            "\n" +
-                            "            fetch(URL\" + \"magnitud/\" + \"campo4/ + campo5)\n" +
-                            "                .then(response => response.text())\n" +
-                            "                .then(data => {\n" +
-                            "                    document.getElementById(\"resultado\").innerHTML += \"<br>Resultado Campo 4: \" + data;\n" +
-                            "                });\n" +
-                            "        });" +
-                            "        });\n" +
-                            "    </script>\n" +
-                            "</body>\n" +
-                            "</html>";
+            String html = "<!DOCTYPE html>\n" +
+                    "<html lang=\"en\">\n" +
+                    "<head>\n" +
+                    "    <meta charset=\"UTF-8\">\n" +
+                    "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "<style>\n" +
+                        "    form {\n" +
+                        "        margin-bottom: 20px;\n" +
+                        "    }\n" +
+                        "\t</style>" +
+                    "</head>\n" +
+                    "<body>\n" +
+                    "\n" +
+                    "    <!-- Form para el Seno -->\n" +
+                    "    <form id=\"sinForm\">\n" +
+                    "        <label for=\"sinValor\">Calcular Seno:</label>\n" +
+                    "        <input type=\"text\" id=\"sinValor\" name=\"sinValor\" required>\n" +
+                    "        <button type=\"button\" onclick=\"calcularSeno()\">Enviar</button>\n" +
+                    "        <div id=\"resultadoSeno\"></div>\n" +
+                    "    </form>\n" +
+                    "\n" +
+                    "    <!-- Form para el Coseno -->\n" +
+                    "    <form id=\"cosForm\">\n" +
+                    "        <label for=\"cosValor\">Calcular Coseno:</label>\n" +
+                    "        <input type=\"text\" id=\"cosValor\" name=\"cosValor\" required>\n" +
+                    "        <button type=\"button\" onclick=\"calcularCoseno()\">Enviar</button>\n" +
+                    "        <div id=\"resultadoCoseno\"></div>\n" +
+                    "    </form>\n" +
+                    "\n" +
+                    "    <!-- Form para Palíndromo -->\n" +
+                    "    <form id=\"palindromeForm\">\n" +
+                    "        <label for=\"palindromeValor\">Verificar Palíndromo:</label>\n" +
+                    "        <input type=\"text\" id=\"palindromeValor\" name=\"palindromeValor\" required>\n" +
+                    "        <button type=\"button\" onclick=\"verificarPalindromo()\">Enviar</button>\n" +
+                    "        <div id=\"resultadoPalindromo\"></div>\n" +
+                    "    </form>\n" +
+                    "\n" +
+                    "    <!-- Form para la Raíz Cuadrada de la Suma de Cuadrados -->\n" +
+                    "    <form id=\"sqrtForm\">\n" +
+                    "        <label for=\"sqrtValor1\">Calcular la magnitud de un vector, Primer valor:</label>\n" +
+                    "        <input type=\"text\" id=\"sqrtValor1\" name=\"sqrtValor1\" required>\n" +
+                    "        <label for=\"sqrtValor2\">Segundo valor:</label>\n" +
+                    "        <input type=\"text\" id=\"sqrtValor2\" name=\"sqrtValor2\" required>\n" +
+                    "        <button type=\"button\" onclick=\"calcularRaizCuadrada()\">Enviar</button>\n" +
+                    "        <div id=\"resultadoRaizCuadrada\"></div>\n" +
+                    "    </form>\n" +
+                    "\n" +
+                    "    <script>\n" +
+                    "        function calcularSeno() {\n" +
+                    "            const valorIngresado = document.getElementById('sinValor').value;\n" +
+                    "            const resultadoElement = document.getElementById('resultadoSeno');\n" +
+                    "\n" +
+                    "            fetch(`http://localhost:4567/sin?value=${valorIngresado}`)\n" +
+                    "                .then(response => response.text())\n" +
+                    "                .then(data => {\n" +
+                    "                    resultadoElement.textContent = `El seno de ${valorIngresado} es: ${data}`;\n" +
+                    "                })\n" +
+                    "                .catch(error => {\n" +
+                    "                    console.error('Error:', error);\n" +
+                    "                    resultadoElement.textContent = 'Error al comunicarse con el servidor.';\n" +
+                    "                });\n" +
+                    "        }\n" +
+                    "\n" +
+                    "        function calcularCoseno() {\n" +
+                    "            const valorIngresado = document.getElementById('cosValor').value;\n" +
+                    "            const resultadoElement = document.getElementById('resultadoCoseno');\n" +
+                    "\n" +
+                    "            fetch(`http://localhost:4567/cos?value=${valorIngresado}`)\n" +
+                    "                .then(response => response.text())\n" +
+                    "                .then(data => {\n" +
+                    "                    resultadoElement.textContent = `El coseno de ${valorIngresado} es: ${data}`;\n" +
+                    "                })\n" +
+                    "                .catch(error => {\n" +
+                    "                    console.error('Error:', error);\n" +
+                    "                    resultadoElement.textContent = 'Error al comunicarse con el servidor.';\n" +
+                    "                });\n" +
+                    "        }\n" +
+                    "\n" +
+                    "        function verificarPalindromo() {\n" +
+                    "            const cadenaIngresada = document.getElementById('palindromeValor').value;\n" +
+                    "            const resultadoElement = document.getElementById('resultadoPalindromo');\n" +
+                    "\n" +
+                    "            fetch(`http://localhost:4567/ispalindrome?value=${cadenaIngresada}`)\n" +
+                    "                .then(response => response.text())\n" +
+                    "                .then(data => {\n" +
+                    "                    resultadoElement.textContent = `La palabra ${cadenaIngresada} ${data}`;\n" +
+                    "                })\n" +
+                    "                .catch(error => {\n" +
+                    "                    console.error('Error:', error);\n" +
+                    "                    resultadoElement.textContent = 'Error al comunicarse con el servidor.';\n" +
+                    "                });\n" +
+                    "        }\n" +
+                    "\n" +
+                    "        function calcularRaizCuadrada() {\n" +
+                    "            const valor1 = document.getElementById('sqrtValor1').value;\n" +
+                    "            const valor2 = document.getElementById('sqrtValor2').value;\n" +
+                    "            const resultadoElement = document.getElementById('resultadoRaizCuadrada');\n" +
+                    "\n" +
+                    "            fetch(`http://localhost:4567/vector?value1=${valor1}&value2=${valor2}`)\n" +
+                    "                .then(response => response.text())\n" +
+                    "                .then(data => {\n" +
+                    "                    resultadoElement.textContent = `La magnitud del vector es: ${data}`;\n" +
+                    "                })\n" +
+                    "                .catch(error => {\n" +
+                    "                    console.error('Error:', error);\n" +
+                    "                    resultadoElement.textContent = 'Error al comunicarse con el servidor.';\n" +
+                    "                });\n" +
+                    "        }\n" +
+                    "    </script>\n" +
+                    "</body>\n" +
+                    "</html>\n";
             return html;
         }
     }
