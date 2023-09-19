@@ -7,21 +7,33 @@ public class SparkWebServer {
 
     public static void main(String... args){
         port(getPort());
+
         get("hello", (req,res) -> "Hello Docker!");
+
+        get("homePage", (req,res) -> new WebPage().getPage());
 
         get("sin", (req,res) -> Math.sin(Double.parseDouble(req.queryParams("value"))));
 
         get("cos", (req,res) -> Math.cos(Double.parseDouble(req.queryParams("value"))));
 
         get("ispalindrome", (req,res) -> {
-            String[] str = req.queryParams("value").split("");
-            for (String i : str) {
-                System.out.printf(i);
+            String request = req.queryParams("value");
+            boolean isPalindrome = true;
+            String result = "Is Palindrome";
+            for (int i=0; i < request.length(); i++) {
+                if(! (request.charAt(i) == request.charAt(request.length()-1-i) )) {
+                    isPalindrome=false;
+                    result = "Is not Palindrome";
+                }
             }
-            return req.queryParams("value");
+            return result;
         });
 
-        get("vector", (req,res) -> "4");
+        get("vector", (req,res) -> {
+            float value1 = Float.parseFloat(req.queryParams("value1"));
+            float value2 = Float.parseFloat(req.queryParams("value2"));
+            return Math.sqrt(Math.pow(value1, 2)+Math.pow(value2, 2));
+        });
     }
 
     private static int getPort() {
