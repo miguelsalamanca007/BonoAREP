@@ -54,7 +54,7 @@ public class WebPage {
                     "            const valorIngresado = document.getElementById('sinValor').value;\n" +
                     "            const resultadoElement = document.getElementById('resultadoSeno');\n" +
                     "\n" +
-                    "            fetch(`http://localhost:4567/sin?value=${valorIngresado}`)\n" +
+                    "            fetch(`/sin?value=${valorIngresado}`)\n" +
                     "                .then(response => response.text())\n" +
                     "                .then(data => {\n" +
                     "                    resultadoElement.textContent = `El seno de ${valorIngresado} es: ${data}`;\n" +
@@ -69,7 +69,7 @@ public class WebPage {
                     "            const valorIngresado = document.getElementById('cosValor').value;\n" +
                     "            const resultadoElement = document.getElementById('resultadoCoseno');\n" +
                     "\n" +
-                    "            fetch(`http://localhost:4567/cos?value=${valorIngresado}`)\n" +
+                    "            fetch(`/cos?value=${valorIngresado}`)\n" +
                     "                .then(response => response.text())\n" +
                     "                .then(data => {\n" +
                     "                    resultadoElement.textContent = `El coseno de ${valorIngresado} es: ${data}`;\n" +
@@ -84,7 +84,7 @@ public class WebPage {
                     "            const cadenaIngresada = document.getElementById('palindromeValor').value;\n" +
                     "            const resultadoElement = document.getElementById('resultadoPalindromo');\n" +
                     "\n" +
-                    "            fetch(`http://localhost:4567/ispalindrome?value=${cadenaIngresada}`)\n" +
+                    "            fetch(`/ispalindrome?value=${cadenaIngresada}`)\n" +
                     "                .then(response => response.text())\n" +
                     "                .then(data => {\n" +
                     "                    resultadoElement.textContent = `La palabra ${cadenaIngresada} ${data}`;\n" +
@@ -100,7 +100,7 @@ public class WebPage {
                     "            const valor2 = document.getElementById('sqrtValor2').value;\n" +
                     "            const resultadoElement = document.getElementById('resultadoRaizCuadrada');\n" +
                     "\n" +
-                    "            fetch(`http://localhost:4567/vector?value1=${valor1}&value2=${valor2}`)\n" +
+                    "            fetch(`/vector?value1=${valor1}&value2=${valor2}`)\n" +
                     "                .then(response => response.text())\n" +
                     "                .then(data => {\n" +
                     "                    resultadoElement.textContent = `La magnitud del vector es: ${data}`;\n" +
