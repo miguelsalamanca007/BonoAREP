@@ -11,7 +11,6 @@ Imagen de las respuestas con valores para cada formulario
 ![](./img/image2.png)
 ### Imagen en Docker Hub
 La imagen en docker hub se llama miguels007/bono-parcial \
-[URL de la imagen](https://hub.docker.com/repository/docker/miguels007/bono-parcial/general)
 ### Prerequisitos 
 Se necesita lo siguiente para correr el proyecto:
 - Docker
